@@ -1,0 +1,68 @@
+@model IEnumerable<BloodBankSystem.Models.BloodRequest>
+
+@{
+    ViewData["Title"] = "Blood Requests";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<div class="mb-3">
+    <a class="btn btn-primary" asp-controller="BloodRequestAdmin" asp-action="Create">Create New Request</a>
+</div>
+
+@if (Model.Any())
+{
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Recipient</th>
+                <th>Blood Group</th>
+                <th>Quantity</th>
+                <th>Location</th>
+                <th>Request Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var request in Model)
+            {
+                <tr>
+                    <td>@request.Recipient?.FullName</td>
+                    <td>@request.BloodGroup</td>
+                    <td>@request.Quantity</td>
+                    <td>@request.Location</td>
+                    <td>@request.RequestDate.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        <span class="badge bg-@(request.Status == "Pending" ? "warning text-dark" : request.Status == "Approved" ? "success" : "danger")">
+                            @request.Status
+                        </span>
+                    </td>
+                    <td class="d-flex flex-wrap gap-1">
+                        <a class="btn btn-sm btn-info" asp-controller="BloodRequestAdmin" asp-action="Edit" asp-route-id="@request.Id">Edit</a>
+                        <a class="btn btn-sm btn-danger" asp-controller="BloodRequestAdmin" asp-action="Delete" asp-route-id="@request.Id">Delete</a>
+                        <a class="btn btn-sm btn-secondary" asp-controller="BloodRequestAdmin" asp-action="Match" asp-route-id="@request.Id">Match</a>
+
+                        @if (request.Status == "Pending")
+                        {
+                            <form asp-controller="BloodRequestAdmin" asp-action="Approve" method="post" class="d-inline">
+                                <input type="hidden" name="id" value="@request.Id" />
+                                <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                            </form>
+                            <form asp-controller="BloodRequestAdmin" asp-action="Reject" method="post" class="d-inline">
+                                <input type="hidden" name="id" value="@request.Id" />
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Reject</button>
+                            </form>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">
+        No blood requests found.
+    </div>
+}

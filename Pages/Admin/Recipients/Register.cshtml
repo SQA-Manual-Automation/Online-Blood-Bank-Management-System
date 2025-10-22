@@ -1,0 +1,32 @@
+@page
+@model BloodBankSystem.Pages_Recipients.RegisterModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>Recipient Registration</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Recipient.FullName"></label>
+        <input asp-for="Recipient.FullName" class="form-control" />
+        <span asp-validation-for="Recipient.FullName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Recipient.Email"></label>
+        <input asp-for="Recipient.Email" class="form-control" />
+        <span asp-validation-for="Recipient.Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Recipient.BloodGroup"></label>
+        <input asp-for="Recipient.BloodGroup" class="form-control" />
+        <span asp-validation-for="Recipient.BloodGroup" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Recipient.Password"></label>
+        <input asp-for="Recipient.Password" type="password" class="form-control" />
+        <span asp-validation-for="Recipient.Password" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>

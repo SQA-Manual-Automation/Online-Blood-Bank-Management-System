@@ -1,0 +1,79 @@
+@model BloodBankSystem.Models.Donor
+
+@{
+    ViewData["Title"] = "Edit Donor";
+}
+
+<h2 class="mb-4">Edit Donor Profile</h2>
+
+@if (TempData["ToastMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["ToastMessage"]
+    </div>
+}
+
+<form asp-action="Edit" method="post">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <input type="hidden" asp-for="DonorId" />
+
+    <div class="form-group">
+        <label asp-for="FullName" class="control-label"></label>
+        <input asp-for="FullName" class="form-control" />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="BloodGroup" class="control-label"></label>
+        <select asp-for="BloodGroup" class="form-control">
+            <option value="">-- Select Blood Group --</option>
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>O+</option>
+            <option>O-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+        </select>
+        <span asp-validation-for="BloodGroup" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ContactNumber" class="control-label"></label>
+        <input asp-for="ContactNumber" class="form-control" />
+        <span asp-validation-for="ContactNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Location" class="control-label"></label>
+        <input asp-for="Location" class="form-control" />
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LastDonationDate" class="control-label"></label>
+        <input asp-for="LastDonationDate" class="form-control" type="date" />
+        <span asp-validation-for="LastDonationDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DateOfBirth" class="control-label"></label>
+        <input asp-for="DateOfBirth" class="form-control" type="date" />
+        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+    </div>
+
+    <div class="form-group form-check">
+        <input asp-for="IsEligible" class="form-check-input" />
+        <label asp-for="IsEligible" class="form-check-label"></label>
+    </div>
+
+    <div class="form-group mt-4">
+        <input type="submit" value="Save Changes" class="btn btn-primary" />
+        <a asp-action="DonorIndex" class="btn btn-secondary ml-2">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

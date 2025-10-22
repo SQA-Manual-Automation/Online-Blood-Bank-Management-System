@@ -1,0 +1,41 @@
+@model BloodBankSystem.Models.Donor
+
+@{
+    ViewData["Title"] = "Donor Dashboard";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-3 text-center">Welcome, @Model.FullName</h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-4">Email</dt>
+                <dd class="col-sm-8">@Model.Email</dd>
+
+                <dt class="col-sm-4">Blood Group</dt>
+                <dd class="col-sm-8">@Model.BloodGroup</dd>
+
+                <dt class="col-sm-4">Location</dt>
+                <dd class="col-sm-8">@Model.Location</dd>
+
+                <dt class="col-sm-4">Contact Number</dt>
+                <dd class="col-sm-8">@Model.ContactNumber</dd>
+
+                <dt class="col-sm-4">Date of Birth</dt>
+                <dd class="col-sm-8">@Model.DateOfBirth.ToString("yyyy-MM-dd")</dd>
+
+                <dt class="col-sm-4">Last Donation</dt>
+                <dd class="col-sm-8">@Model.LastDonationDate?.ToString("yyyy-MM-dd") ?? "N/A"</dd>
+
+                <dt class="col-sm-4">Eligibility</dt>
+                <dd class="col-sm-8">@((Model.IsEligible) ? "Eligible" : "Not Eligible")</dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="mt-4 text-center">
+        <a asp-action="Edit" asp-route-id="@Model.DonorId" class="btn btn-warning me-2">Edit Profile</a>
+        <a asp-action="Logout" class="btn btn-secondary">Logout</a>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+@model BloodBankSystem.Models.Donor
+
+@{
+    ViewData["Title"] = "Delete Donor";
+}
+
+<h2>Delete Donor</h2>
+
+<h4>Are you sure you want to delete this donor?</h4>
+<hr />
+
+<div class="form-group">
+    <label>Full Name:</label>
+    <p>@Model.FullName</p>
+</div>
+
+<div class="form-group">
+    <label>Blood Group:</label>
+    <p>@Model.BloodGroup</p>
+</div>
+
+<div class="form-group">
+    <label>Contact Number:</label>
+    <p>@Model.ContactNumber</p>
+</div>
+
+<div class="form-group">
+    <label>Location:</label>
+    <p>@Model.Location</p>
+</div>
+
+<div class="form-group">
+    <label>Last Donation Date:</label>
+    <p>@Model.LastDonationDate?.ToString("yyyy-MM-dd") ?? "N/A"</p>
+</div>
+
+<div class="form-group">
+    <label>Date of Birth:</label>
+    <p>@Model.DateOfBirth.ToString("yyyy-MM-dd")</p>
+</div>
+
+<div class="form-group">
+    <label>Eligible:</label>
+    <p>@(Model.IsEligible ? "Yes" : "No")</p>
+</div>
+
+<form asp-action="DeleteConfirmed">
+    <input type="hidden" asp-for="DonorId" />
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

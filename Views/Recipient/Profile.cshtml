@@ -1,0 +1,56 @@
+@model BloodBankSystem.Models.Recipient
+
+@{
+    ViewData["Title"] = "Recipient Profile";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h4 class="card-title">@Model.FullName</h4>
+        <p class="card-text">
+            <strong>Blood Group:</strong> @(string.IsNullOrWhiteSpace(Model.BloodGroup) ? "N/A" : Model.BloodGroup)<br />
+            <strong>Gender:</strong> @(string.IsNullOrWhiteSpace(Model.Gender) ? "N/A" : Model.Gender)<br />
+            <strong>Date of Birth:</strong> @(Model.DateOfBirth.HasValue ? Model.DateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A")<br />
+            <strong>Contact Number:</strong> @(string.IsNullOrWhiteSpace(Model.ContactNumber) ? "N/A" : Model.ContactNumber)<br />
+            <strong>Email:</strong> @(string.IsNullOrWhiteSpace(Model.Email) ? "N/A" : Model.Email)<br />
+            <strong>Address:</strong> @(string.IsNullOrWhiteSpace(Model.Address) ? "N/A" : Model.Address)<br />
+            <strong>Required Date:</strong> @(Model.RequiredDate != DateTime.MinValue ? Model.RequiredDate.ToString("yyyy-MM-dd") : "N/A")<br />
+            <strong>Urgency Level:</strong> @(string.IsNullOrWhiteSpace(Model.UrgencyLevel) ? "N/A" : Model.UrgencyLevel)<br />
+            <strong>Application User ID:</strong> @(string.IsNullOrWhiteSpace(Model.ApplicationUserId) ? "N/A" : Model.ApplicationUserId)
+        </p>
+    </div>
+</div>
+
+@if (ViewBag.Requests is IEnumerable<BloodBankSystem.Models.BloodRequest> requests && requests.Any())
+{
+    <h4>Recent Blood Requests</h4>
+    <table class="table table-bordered table-hover align-middle">
+        <thead class="table-light">
+            <tr>
+                <th>Blood Group</th>
+                <th>Location</th>
+                <th>Quantity</th>
+                <th>Status</th>
+                <th>Requested At</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var request in requests)
+            {
+                <tr>
+                    <td>@(string.IsNullOrWhiteSpace(request.BloodGroup) ? "N/A" : request.BloodGroup)</td>
+                    <td>@(string.IsNullOrWhiteSpace(request.Location) ? "N/A" : request.Location)</td>
+                    <td>@request.Quantity</td>
+                    <td>@(string.IsNullOrWhiteSpace(request.Status) ? "N/A" : request.Status)</td>
+                    <td>@(request.RequestedAt != DateTime.MinValue ? request.RequestedAt.ToString("yyyy-MM-dd") : "N/A")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">No blood requests found for this profile.</div>
+}

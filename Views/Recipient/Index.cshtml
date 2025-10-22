@@ -1,0 +1,49 @@
+@model IEnumerable<BloodBankSystem.Models.Recipient>
+
+@{
+    ViewData["Title"] = "All Recipients";
+}
+
+<h2 class="mb-4">All Recipients</h2>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Blood Group</th>
+            <th>Gender</th>
+            <th>Date of Birth</th>
+            <th>Contact</th>
+            <th>Requested Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var recipient in Model)
+        {
+            var latestRequest = recipient.BloodRequests?
+                .OrderByDescending(r => r.RequestDate)
+                .FirstOrDefault();
+
+            <tr>
+                <td>@recipient.FullName</td>
+                <td>@recipient.Email</td>
+                <td>@recipient.BloodGroup</td>
+                <td>@recipient.Gender</td>
+                <td>@recipient.DateOfBirth</td>
+                <td>@recipient.ContactNumber</td>
+                <td>@latestRequest?.RequestDate.ToShortDateString() ?? "—"</td>
+                <td>
+                    <a asp-controller="Recipient" asp-action="Profile" asp-route-id="@recipient.RecipientId" class="btn btn-sm btn-primary">
+                        View Profile
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

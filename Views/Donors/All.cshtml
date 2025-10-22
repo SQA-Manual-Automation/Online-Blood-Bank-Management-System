@@ -1,0 +1,33 @@
+@model IEnumerable<BloodBankSystem.Models.Donor>
+
+@{
+    ViewData["Title"] = "Registered Donors";
+}
+
+<h2 class="mb-4">Registered Donors</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Blood Group</th>
+            <th>Contact</th>
+            <th>Location</th>
+            <th>Last Donation</th>
+            <th>Eligible</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var donor in Model)
+        {
+            <tr>
+                <td>@donor.FullName</td>
+                <td>@donor.BloodGroup</td>
+                <td>@donor.ContactNumber</td>
+                <td>@donor.Location</td>
+                <td>@donor.LastDonationDate?.ToString("yyyy-MM-dd")</td>
+                <td>@(donor.IsEligible ? "Yes" : "No")</td>
+            </tr>
+        }
+    </tbody>
+</table>

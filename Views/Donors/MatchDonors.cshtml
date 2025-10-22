@@ -1,0 +1,48 @@
+@model IEnumerable<BloodBankSystem.Models.Donor>
+
+@{
+    ViewData["Title"] = "Matched Donors";
+}
+
+<h2>Matched Donors</h2>
+
+@if (!string.IsNullOrEmpty(ViewBag.Error as string))
+{
+    <div class="alert alert-danger">
+        @ViewBag.Error
+    </div>
+}
+else if (!Model.Any())
+{
+    <div class="alert alert-warning">
+        No matching donors found.
+    </div>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Blood Group</th>
+                <th>Contact Number</th>
+                <th>Location</th>
+                <th>Last Donation</th>
+                <th>Eligible</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var donor in Model)
+            {
+                <tr>
+                    <td>@donor.FullName</td>
+                    <td>@donor.BloodGroup</td>
+                    <td>@donor.ContactNumber</td>
+                    <td>@donor.Location</td>
+                    <td>@donor.LastDonationDate?.ToString("yyyy-MM-dd") ?? "N/A"</td>
+                    <td>@(donor.IsEligible ? "Yes" : "No")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

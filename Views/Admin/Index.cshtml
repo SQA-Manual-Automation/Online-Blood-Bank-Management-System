@@ -1,0 +1,40 @@
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container mt-5">
+    <div class="text-center">
+        <h2 class="mb-3">Welcome, Admin</h2>
+        <p class="lead">This is your dashboard. From here, you can manage donors, recipients, and blood requests.</p>
+        <hr />
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Donors</h5>
+                        <p class="card-text">View and manage registered donors.</p>
+                        <a href="/Donors" class="btn btn-outline-primary w-100">Manage Donors</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Recipients</h5>
+                        <p class="card-text">Review recipient profiles and requests.</p>
+                        <a href="/Recipients" class="btn btn-outline-success w-100">Manage Recipients</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Blood Requests</h5>
+                        <p class="card-text">Approve or reject blood requests.</p>
+                        <a href="/BloodRequests" class="btn btn-outline-danger w-100">View Requests</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

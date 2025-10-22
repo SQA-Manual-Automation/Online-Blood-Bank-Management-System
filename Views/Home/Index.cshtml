@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Welcome to the Blood Bank System";
+}
+
+<style>
+  body {
+    background-color: #f2f2f2; /* Soft neutral background */
+  }
+</style>
+
+<div class="text-center mt-4">
+    <img src="/images/Logo.png" alt="Blood Bank Logo" class="img-fluid" style="max-height: 150px;" />
+</div>
+
+<div class="jumbotron text-center bg-light p-5 rounded mt-4">
+    <h1 class="display-4">Welcome to BloodBankSystem</h1>
+    <p class="lead">Connecting donors and recipients with speed, accuracy, and care.</p>
+    <div class="d-flex justify-content-center flex-wrap">
+        <!-- Updated Admin Login button -->
+        <a href="/Identity/Account/Login" class="btn btn-warning btn-lg m-2">Admin Login</a>
+
+        <a asp-controller="Recipient" asp-action="Register" class="btn btn-danger btn-lg m-2">Register as Recipient</a>
+        <a asp-controller="Recipient" asp-action="Login" class="btn btn-dark btn-lg m-2">Login as Recipient</a>
+        <a asp-controller="Donors" asp-action="Register" class="btn btn-primary btn-lg m-2">Register as Donor</a>
+        <a asp-controller="Donors" asp-action="Login" class="btn btn-info btn-lg m-2">Login as Donor</a>
+    </div>
+</div>
+
+<div class="row text-center mt-5">
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title">Donor Matching</h5>
+                <p class="card-text">Find eligible donors based on blood type and location.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title">Request Tracking</h5>
+                <p class="card-text">Monitor the status of your blood requests in real time.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title">Secure Profiles</h5>
+                <p class="card-text">Manage your donor or recipient profile with full control.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-center mt-4">
+    <p class="lead">Start your journey by registering or logging in to manage blood requests.</p>
+</div>
+
+<div class="text-center mt-2">
+    <p>
+        <a asp-controller="Diagnostics" asp-action="PingDb" class="text-decoration-none mx-2">Diagnostics: Ping DB</a> |
+        <!--  Updated Admin Login link -->
+        <a href="/Identity/Account/Login" class="text-decoration-none mx-2">Admin Login</a> |
+        <a asp-controller="Recipient" asp-action="Register" class="text-decoration-none mx-2">Register as Recipient</a> |
+        <a asp-controller="Recipient" asp-action="Login" class="text-decoration-none mx-2">Login as Recipient</a> |
+        <a asp-controller="Donors" asp-action="Register" class="text-decoration-none mx-2">Register as Donor</a> |
+        <a asp-controller="Donors" asp-action="Login" class="text-decoration-none mx-2">Login as Donor</a>
+    </p>
+</div>

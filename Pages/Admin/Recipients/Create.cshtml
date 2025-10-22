@@ -1,0 +1,76 @@
+@page
+@model BloodBankSystem.Pages_Recipients.CreateModel
+
+        @{
+        ViewData["Title"] = "Create";
+        }
+        
+        <h1>Create</h1>
+        
+    <h4>Recipient</h4>
+    <hr />
+    <div class="row">
+    <div class="col-md-4">
+    <form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Recipient.FullName" class="control-label"></label>
+                <input asp-for="Recipient.FullName" class="form-control" />
+                <span asp-validation-for="Recipient.FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Recipient.BloodType" class="control-label"></label>
+                <input asp-for="Recipient.BloodType" class="form-control" />
+                <span asp-validation-for="Recipient.BloodType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Recipient.Gender" class="control-label"></label>
+                <input asp-for="Recipient.Gender" class="form-control" />
+                <span asp-validation-for="Recipient.Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Recipient.DateOfBirth" class="control-label"></label>
+                <input asp-for="Recipient.DateOfBirth" class="form-control" />
+                <span asp-validation-for="Recipient.DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Recipient.ContactNumber" class="control-label"></label>
+                <input asp-for="Recipient.ContactNumber" class="form-control" />
+                <span asp-validation-for="Recipient.ContactNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Recipient.Email" class="control-label"></label>
+                <input asp-for="Recipient.Email" class="form-control" />
+                <span asp-validation-for="Recipient.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Recipient.Address" class="control-label"></label>
+                <input asp-for="Recipient.Address" class="form-control" />
+                <span asp-validation-for="Recipient.Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Recipient.RequestDate" class="control-label"></label>
+                <input asp-for="Recipient.RequestDate" class="form-control" />
+                <span asp-validation-for="Recipient.RequestDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Recipient.RequestStatus" class="control-label"></label>
+                <input asp-for="Recipient.RequestStatus" class="form-control" />
+                <span asp-validation-for="Recipient.RequestStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Recipient.Password" class="control-label"></label>
+                <input asp-for="Recipient.Password" class="form-control" />
+                <span asp-validation-for="Recipient.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+

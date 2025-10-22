@@ -1,0 +1,77 @@
+@model IEnumerable<BloodBankSystem.Models.BloodRequest>
+
+@{
+    ViewData["Title"] = "Matching Blood Requests";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-3">@ViewData["Title"]</h2>
+
+    @if (TempData["ToastMessage"] != null)
+    {
+        <div class="alert alert-success text-center">
+            @TempData["ToastMessage"]
+        </div>
+    }
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+            No matching blood requests found for your profile.
+        </div>
+    }
+    else
+    {
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Recipient Name</th>
+                    <th>Blood Group</th>
+                    <th>Location</th>
+                    <th>Request Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var request in Model)
+                {
+                    <tr>
+                        <td>@request.Recipient?.FullName</td>
+                        <td>@request.BloodGroup</td>
+                        <td>@request.Location</td>
+                        <td>@request.RequestDate.ToShortDateString()</td>
+                        <td>
+                            <span class="badge @(request.Status == "Pending" ? "bg-warning text-dark" : "bg-success")">
+                                @request.Status
+                            </span>
+                        </td>
+                        <td>
+                            @if (request.Status == "Pending")
+                            {
+                                <form asp-action="AcceptRequest" asp-route-id="@request.Id" method="post">
+                                    <button type="submit" class="btn btn-success btn-sm">Accept</button>
+                                </form>
+                            }
+                            else
+                            {
+                                <span class="text-muted">Already @request.Status</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+@section Scripts {
+    @if (TempData["ToastMessage"] != null)
+    {
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                showToast("@TempData["ToastMessage"]".replace(/"/g, '&quot;'), 'success');
+            });
+        </script>
+    }
+}

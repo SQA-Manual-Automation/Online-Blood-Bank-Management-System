@@ -1,0 +1,81 @@
+@page
+@model BloodBankSystem.Pages_BloodRequests.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BloodRequest[0].BloodGroup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BloodRequest[0].Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BloodRequest[0].Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BloodRequest[0].Message)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BloodRequest[0].RequestedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BloodRequest[0].RequestDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BloodRequest[0].Status)
+            </th>
+            <th>
+                @Html.DisplayName("Recipient ID")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var iter in Model.BloodRequest) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => iter.BloodGroup)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => iter.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => iter.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => iter.Message)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => iter.RequestedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => iter.RequestDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => iter.Status)
+            </td>
+            @{
+                var recipientId = iter.Recipient?.Id;
+            }
+            <td>
+                @Html.DisplayFor(_ => recipientId)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@iter.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@iter.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@iter.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

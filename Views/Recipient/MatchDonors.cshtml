@@ -1,0 +1,39 @@
+@model BloodBankSystem.Models.ViewModels.MatchResultViewModel
+
+@{
+    ViewData["Title"] = "Matching Donors";
+}
+
+<h2>Matching Donors for @Model.RecipientName</h2>
+<p>Blood Group Required: <strong>@Model.RequestedBloodGroup</strong></p>
+
+@if (Model.MatchingDonors != null && Model.MatchingDonors.Any())
+{
+    <table class="table table-bordered table-striped mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>Name</th>
+                <th>Blood Group</th>
+                <th>Contact</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var donor in Model.MatchingDonors)
+            {
+                <tr>
+                    <td>@donor.FullName</td>
+                    <td>@donor.BloodGroup</td>
+                    <td>@donor.ContactNumber</td>
+                    <td>@donor.Email</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning mt-3">
+        No matching donors found for blood group <strong>@Model.RequestedBloodGroup</strong>.
+    </div>
+}

@@ -1,0 +1,56 @@
+@model List<BloodBankSystem.Models.Donor>
+
+@{
+    var request = ViewData["Request"] as BloodBankSystem.Models.BloodRequest;
+    ViewData["Title"] = ViewData["Title"] ?? "Matched Donors";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+@if (request != null)
+{
+    <div class="mb-3">
+        <div><strong>Request by:</strong> @request.Recipient?.FullName</div>
+        <div><strong>Blood Group Needed:</strong> @request.BloodGroup</div>
+        <div><strong>Location:</strong> @request.Location</div>
+        @if (!string.IsNullOrWhiteSpace(request.Message))
+        {
+            <div><strong>Message:</strong> @request.Message</div>
+        }
+    </div>
+}
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-bordered table-hover align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Donor Name</th>
+                <th>Blood Group</th>
+                <th>Location</th>
+                <th>Contact</th>
+                <th>Last Donation</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var donor in Model)
+            {
+                <tr>
+                    <td>@donor.FullName</td>
+                    <td>@donor.BloodGroup</td>
+                    <td>@donor.Location</td>
+                    <td>@donor.ContactNumber</td>
+                    <td>@(donor.LastDonationDate?.ToString("yyyy-MM-dd") ?? "N/A")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning">No matching donors found for this request.</div>
+}
+
+<div class="mt-4">
+    <a class="btn btn-secondary" asp-controller="BloodRequestAdmin" asp-action="Index">Back to List</a>
+</div>

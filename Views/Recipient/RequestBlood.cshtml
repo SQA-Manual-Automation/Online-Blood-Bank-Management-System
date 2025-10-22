@@ -1,0 +1,51 @@
+@model BloodBankSystem.Models.BloodRequest
+
+@{
+    ViewData["Title"] = "Request Blood";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<form asp-action="RequestBlood" asp-controller="Recipient" method="post" class="card p-4 shadow-sm">
+    @Html.AntiForgeryToken()
+
+    <div class="mb-3">
+        <label asp-for="BloodGroup" class="form-label">Blood Group</label>
+        <select asp-for="BloodGroup" class="form-select" required>
+            <option value="">-- Select Blood Group --</option>
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+            <option>O+</option>
+            <option>O-</option>
+        </select>
+        <span asp-validation-for="BloodGroup" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Quantity" class="form-label">Units Required</label>
+        <input asp-for="Quantity" class="form-control" type="number" min="1" required />
+        <span asp-validation-for="Quantity" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Location" class="form-label">Location</label>
+        <input asp-for="Location" class="form-control" required />
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Message" class="form-label">Additional Message</label>
+        <textarea asp-for="Message" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="Message" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Request</button>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,50 @@
+@model BloodBankSystem.Models.Donor
+@{
+    ViewData["Title"] = "Donor Dashboard";
+}
+
+<div class="container mt-4">
+    @if (TempData["ToastMessage"] != null)
+    {
+        <div class="alert alert-success text-center">
+            @TempData["ToastMessage"]
+        </div>
+    }
+
+    <h2 class="mb-3">Welcome, @Model.FullName!</h2>
+    <p><strong>Donor ID:</strong> @Model.DonorId</p>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Your Details</h5>
+                    <p class="card-text">
+                        <strong>Blood Group:</strong> @Model.BloodGroup<br />
+                        <strong>Location:</strong> @Model.Location<br />
+                        <strong>Last Donation:</strong> @(Model.LastDonationDate?.ToString("yyyy-MM-dd") ?? "N/A")<br />
+                        <strong>Eligible to Donate:</strong> @(Model.IsEligible ? "Yes" : "No")
+                    </p>
+                    <a asp-action="Edit" asp-route-id="@Model.DonorId" class="btn btn-outline-primary">Update Profile</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <a asp-action="MatchingRequests" class="btn btn-success btn-lg">
+                View Matching Requests
+            </a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @if (TempData["ToastMessage"] != null)
+    {
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                showToast("@TempData["ToastMessage"]".replace(/"/g, '&quot;'), 'success');
+            });
+        </script>
+    }
+}

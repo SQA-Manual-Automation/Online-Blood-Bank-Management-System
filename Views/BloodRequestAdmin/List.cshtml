@@ -1,0 +1,48 @@
+@model List<BloodBankSystem.Models.BloodRequest>
+
+@{
+    ViewData["Title"] = "All Blood Requests";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-bordered table-hover align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Recipient</th>
+                <th>Blood Group</th>
+                <th>Quantity</th>
+                <th>Location</th>
+                <th>Message</th>
+                <th>Request Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var r in Model)
+            {
+                <tr>
+                    <td>@r.Recipient?.FullName</td>
+                    <td>@r.BloodGroup</td>
+                    <td>@r.Quantity</td>
+                    <td>@r.Location</td>
+                    <td>@r.Message</td>
+                    <td>
+                        @r.RequestDate.ToString("yyyy-MM-dd")
+                    </td>
+                    <td>
+                        <span class="badge @(r.Status == "Pending" ? "bg-warning text-dark" : "bg-success")">
+                            @r.Status
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">No blood requests found.</div>
+}

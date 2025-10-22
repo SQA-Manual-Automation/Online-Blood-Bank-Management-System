@@ -1,0 +1,90 @@
+@page
+@model BloodBankSystem.Pages_Recipients.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipient[0].FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipient[0].BloodType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipient[0].Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipient[0].DateOfBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipient[0].ContactNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipient[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipient[0].Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipient[0].RequestDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipient[0].RequestStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipient[0].Password)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Recipient) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BloodType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

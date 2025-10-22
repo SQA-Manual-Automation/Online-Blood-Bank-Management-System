@@ -1,0 +1,47 @@
+Project Title: Online Blood Bank Management System
+
+Developer: Ghulam Mehdi
+
+Technologies Used:
+- ASP.NET Core MVC
+- SQL Server Express (SQLEXPRESS01)
+- Entity Framework Core
+- HTML, CSS, Razor Views
+
+Project Overview:
+This system allows donors and recipients to register, manage profiles, and request blood. Admins can view, approve, or reject requests. The system includes role-based access, branding, and a polished UI.
+
+Features:
+- Donor and Recipient registration/login
+- Blood request creation and tracking
+- Admin dashboard for approvals
+- Role-based access control
+- UI branding with logo and color polish
+- Sample data: 20 donors, 20 recipients, 20 blood requests
+
+Setup Instructions:
+1. Open the solution in Visual Studio
+2. Ensure SQL Server Express is installed and running
+3. Update `appsettings.json` if needed:
+   - DefaultConnection: `Server=DESKTOP-3IBNQF5\SQLEXPRESS01;Database=BloodBankDB;Trusted_Connection=True;`
+4. Run the project using IIS Express or `dotnet run`
+5. Login using seeded credentials or register new users
+
+Optional:
+- To restore the database, use the included `.bak` file in `/Database/`
+- Run seed script if needed to populate tables
+
+Credentials:
+- Admin: `admin@example.com` / `admin123`
+- Donor/Recipient: Any seeded email / `pass123`
+
+Notes:
+- If running on another machine, update the SQL Server instance name in `appsettings.json`
+- LocalDB version also available for portability
+
+
+Admin Dfault credentails
+- Email: admin@bloodbank.com
+- Password: Admin@123
+
+Thank you!

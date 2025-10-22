@@ -1,0 +1,19 @@
+@model BloodBankSystem.Models.BloodRequest
+
+<h2>Confirm Delete</h2>
+
+<div class="alert alert-warning">
+    Are you sure you want to delete this blood request?
+</div>
+
+<table class="table table-bordered">
+    <tr><th>Blood Group</th><td>@Model.BloodGroup</td></tr>
+    <tr><th>Location</th><td>@Model.Location</td></tr>
+    <tr><th>Request Date</th><td>@Model.RequestDate.ToString("yyyy-MM-dd")</td></tr>
+</table>
+
+<form asp-action="ConfirmDeleteBloodRequest" method="post">
+    <input type="hidden" asp-for="RequestId" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Dashboard" class="btn btn-secondary">Cancel</a>
+</form>
